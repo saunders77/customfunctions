@@ -112,29 +112,7 @@ Office.initialize = function(reason){
     } 
 
     
-    Excel.Script.CustomFunctions = {};
-    Excel.Script.CustomFunctions["MY"] = {};
-    Excel.Script.CustomFunctions["MY"]["ADDTO42"] = {
-        call: addTo42,
-        description: "Returns the sum of a number and 42",
-        helpUrl: "https://example.com/help.html",
-        result: {
-            resultType: Excel.CustomFunctionValueType.number,
-            resultDimensionality: Excel.CustomFunctionDimensionality.scalar,
-        },
-        parameters: [
-            {
-                name: "num",
-                description: "The number be added",
-                valueType: Excel.CustomFunctionValueType.number,
-                valueDimensionality: Excel.CustomFunctionDimensionality.scalar,
-            },
-        ],
-        options: {
-            batch: false,
-            stream: false,
-        }
-    };
+    /*
     Excel.Script.CustomFunctions["MY"]["DEBUG"] = {
         call: myDebug,
         description: "Returns debugging text",
@@ -148,9 +126,9 @@ Office.initialize = function(reason){
             batch: false,
             stream: true,
         }
-    };
-    Excel.Script.CustomFunctions["FN"] = {};
-    Excel.Script.CustomFunctions["FN"]["ADDTO42"] = {
+    };*/
+    Excel.Script.CustomFunctions["CF"] = {};
+    Excel.Script.CustomFunctions["CF"]["ADDTO42"] = {
         call: addTo42Fast,
         description: "Returns the sum of a number and 42, fast",
         helpUrl: "https://example.com/help.html",
@@ -171,7 +149,7 @@ Office.initialize = function(reason){
             stream: false,
         }
     };
-    Excel.Script.CustomFunctions["FN"]["GETTEMPERATURE"] = {
+    Excel.Script.CustomFunctions["CF"]["GETTEMPERATURE"] = {
         call: getTemperature,
         description: "Returns the temperature of the boiler, mixer, or furnace",
         helpUrl: "https://example.com/help.html",
@@ -192,7 +170,7 @@ Office.initialize = function(reason){
             stream: false,
         }
     };
-    Excel.Script.CustomFunctions["FN"]["STREAMTEMPERATURE"] = {
+    Excel.Script.CustomFunctions["CF"]["STREAMTEMPERATURE"] = {
         call: streamTemperature,
         description: "Streams the temperature of the boiler, mixer, or furnace",
         helpUrl: "https://example.com/help.html",
@@ -219,7 +197,7 @@ Office.initialize = function(reason){
             stream: true,
         }
     };
-    Excel.Script.CustomFunctions["FN"]["SECONDHIGHESTTEMP"] = {
+    Excel.Script.CustomFunctions["CF"]["SECONDHIGHESTTEMP"] = {
         call: secondHighestTemp,
         description: "Returns the second highest from a range of temperatures",
         helpUrl: "https://example.com/help.html",
@@ -240,7 +218,7 @@ Office.initialize = function(reason){
             stream: false,
         }
     };
-    Excel.Script.CustomFunctions["FN"]["TRACKTEMPERATURE"] = {
+    Excel.Script.CustomFunctions["CF"]["TRACKTEMPERATURE"] = {
         call: trackTemperature,
         description: "Streams 25 seconds of temperature history",
         helpUrl: "https://example.com/help.html",
@@ -362,194 +340,7 @@ Office.initialize = function(reason){
         return num1 + num2 + 42;
     }
 
-    Excel.Script.CustomFunctions["CONTOSO"] = {};
-    Excel.Script.CustomFunctions["CONTOSO"]["ADD42"] = {
-        call: add42,
-        description: "Adds two numbers to 42",
-        helpUrl: "https://contoso.com/help.html",
-        result: {
-            resultType: Excel.CustomFunctionValueType.number,
-            resultDimensionality: Excel.CustomFunctionDimensionality.scalar,
-        },
-        parameters: [
-            {
-                name: "num 1",
-                description: "the first number",
-                valueType: Excel.CustomFunctionValueType.number,
-                valueDimensionality: Excel.CustomFunctionDimensionality.scalar,
-            },
-            {
-                name: "num 2",
-                description: "the second number",
-                valueType: Excel.CustomFunctionValueType.number,
-                valueDimensionality: Excel.CustomFunctionDimensionality.scalar,
-            },
-        ],
-        options: {
-            batch: false,
-            stream: false,
-        }
-    };
-    Excel.Script.CustomFunctions["FN"] = {};
-    Excel.Script.CustomFunctions["FN"]["CO2PRICE"] = {
-        call: coPrice,
-        description: "Returns the historical price per ton of CO2",
-        helpUrl: "https://example.com/help.html",
-        result: {
-            resultType: Excel.CustomFunctionValueType.number,
-            resultDimensionality: Excel.CustomFunctionDimensionality.scalar,
-        },
-        parameters: [
-            {
-                name: "date",
-                description: "The date to query for the price",
-                valueType: Excel.CustomFunctionValueType.number,
-                valueDimensionality: Excel.CustomFunctionDimensionality.scalar,
-            },
-        ],
-        options: {
-            batch: false,
-            stream: false,
-        }
-    };
-
-    function getPhonePrice(brand, model){
-        var price = 1.00;
-
-        switch (model) {
-            case 'R9s':
-                price = 420.00;
-                break;
-            case 'A59s':
-                price = 430.00;
-                break;
-            case 'Redmi Note 4X':
-                price = 179.00;
-                break;
-            case 'X9':
-                price = 434.00;
-                break;
-            case 'Redmi 4A':
-                price = 115.99;
-                break;
-            case 'R11':
-                price = 528.00;
-                break;
-            case 'Galaxy J5':
-                price = 186.88;
-                break;
-            case 'Galaxy S8':
-                price = 550.00;
-                break;
-            case 'iPhone 7':
-                price = 469.99;
-                break;
-            case 'Camon CX':
-                price = 39.38;
-                break;
-            case 'Galaxy J1':
-                price = 84.99;
-                break;
-            case 'iPhone SE':
-                price = 269.95;
-                break;
-            case 'Hand':
-                price = 320.00;
-                break;
-            case 'Zoo':
-                price = 379.00;
-                break;
-            case 'Mech':
-                price = 315.00;
-                break;
-            case 'Washer':
-                price = 250.00;
-                break;
-            case 'Coffee':
-                price = 299.00;
-                break;
-            case 'Maker':
-                price = 199.00;
-                break;
-            case 'Wall':
-                price = 129.00;
-                break;
-            case 'E401 Player':
-                price = 259.00;
-                break;
-            case 'E200 Flash':
-                price = 319.00;
-                break;
-            case 'Twoer':
-                price = 229.00;
-                break;
-            default:
-                price = 199.00;
-        }
-          
-        return Excel.Promise(function(setResult, setError){
-            setTimeout(function(){
-                setResult(price);
-            }, 250);
-        });
-    }
-    Excel.Script.CustomFunctions["CONTOSO"]["GETPHONEPRICE"] = {
-        call: getPhonePrice,
-        description: "Queries the web for the latest offered price of the phone model",
-        helpUrl: "https://example.com/help.html",
-        result: {
-            resultType: Excel.CustomFunctionValueType.number,
-            resultDimensionality: Excel.CustomFunctionDimensionality.scalar,
-        },
-        parameters: [
-            {
-                name: "brand",
-                description: "The brand of the phone being queried",
-                valueType: Excel.CustomFunctionValueType.string,
-                valueDimensionality: Excel.CustomFunctionDimensionality.scalar,
-            },
-           {
-                name: "model",
-                description: "The model of the phone being queried",
-                valueType: Excel.CustomFunctionValueType.string,
-                valueDimensionality: Excel.CustomFunctionDimensionality.scalar,
-            },
-        ],
-        options: {
-            batch: false,
-            stream: false,
-        }
-    };
-
-    Excel.Script.CustomFunctions["EPA"] = {};
-    Excel.Script.CustomFunctions["EPA"]["DATAOVERTIME"] = {
-        call: watchOverTime,
-        description: "Visualizes geographical data over time",
-        helpUrl: "https://example.com/help.html",
-        result: {
-            resultType: Excel.CustomFunctionValueType.number,
-            resultDimensionality: Excel.CustomFunctionDimensionality.matrix,
-        },
-        parameters: [
-            {
-                name: "fields",
-                description: "The (increasing, ordered) years and fields for each data point",
-                valueType: Excel.CustomFunctionValueType.string,
-                valueDimensionality: Excel.CustomFunctionDimensionality.matrix,
-            },
-           {
-                name: "values",
-                description: "The values to visualize over time",
-                valueType: Excel.CustomFunctionValueType.number,
-                valueDimensionality: Excel.CustomFunctionDimensionality.matrix,
-            },
-        ],
-        options: {
-            batch: false,
-            stream: true,
-        }
-    };
-
+    
     Excel.run(function (context) {
         context.workbook.customFunctions.addAll();
         return context.sync().then(function(){
